@@ -1,68 +1,63 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## 開發環境
+```
+node v10.16.0
+npm 6.10.2
+```
+## 資料夾結構
+* `public` - 靜態文件
+* `src` - 主要程式
+    - `assets` - 樣式文件
+    - `common` - 放置主要的程式邏輯
+        - `hooks` - 自定義 `React Hooks`
+            - `useDebounce` - 輸入文字延遲處理
+            - `useLoadMore` - 載入更多資料
+            - `useSearch` - 輸入文字並進行http request
+        - `fetch.js` - `axios` 重新封裝
+        - `mixins.js` - 放置共用函數，本項目僅有「進行http request，並處理成功/失敗取得資源的邏輯函數」 - `searchRepos`
+    - `components` - 無狀態組件資料夾
+        - `Filter` - 輸入框區塊
+            - `info.js` - 查詢限制顯示
+            - `search.js` - 輸入框
+        - `List` - 列表組件
+            - `empty.js` - 無資料佔位顯示文字
+            - `item.js` - 列表項組件
+            - `loading.js` - 載入中顯示組件
+    - `layout` - 無狀態佈局資料夾
+        - `Filters` - 輸入框區塊
+        - `Headers` - 頁面頂部
+        - `Lists` - 列表項目
+* `tests/e2e` - 測試資料夾
+    - `command` - 共用指令
+    - `page` - `page object` 分類處理
+    - `specs` - 主測試邏輯
 
-In the project directory, you can run:
+## Project setup
+### install
+```
+npm install
+```
+### run dev
+```
+npm start
+```
+### tests
+```
+npm start
+npm run test
+```
 
-### `yarn start`
+## 測試用例說明
+> 皆採用 headless 方法進行測試
+### 用例1 - `Page Init`
+> 確認開啟瀏覽器，並驗證`#div` tag已載入後，進行`document title`, `Header`, `filter`, `search`(驗證為空值), `empty`, `loading`...文件的顯示/隱藏狀態
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 用例2 - `Searching Something`
+> 於輸入框輸入文字 - React後，驗證http request送出中(loading)與完成(list)...等的組件狀態正確，並計算取得的list資料筆數為30筆 - Github Search API 單筆 Request 預設值返回列數
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### 用例3 - `Infinite Scroll Loading`
+> 於輸入框輸入文字 - React後, 依序向下滾動至頁面底部，共計兩次。並驗證滾動後獲取總資料分別為60筆與90筆
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### 用例4 - `Rate Limit`
+> 取得輸入框區塊中查詢限制的「尚餘次數」數值後，依據剩餘次數向下滾動至頁面底部多次，並於超出尚餘次數時，驗證Alert提示框文字為「查詢次數超出限制，請稍後再試」

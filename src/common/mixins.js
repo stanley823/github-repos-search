@@ -20,10 +20,12 @@ export function searchRepos (params) {
   const queryString = `search/repositories?q=${debouncedSearchText}&page=${loadMore ? _page : page}`
   axios.get(queryString)
     .then(res => {
-      setSearching(false)
-      setLimit(res.headers)
-      loadMore ? setItems([...items, ...res.data.items]) : setItems(res.data.items || [])
-      setTotal(res.data.total_count)
+      if (res.status === 200) {
+        setSearching(false)
+        setLimit(res.headers)
+        loadMore ? setItems([...items, ...res.data.items]) : setItems(res.data.items || [])
+        setTotal(res.data.total_count)
+      }
     }).catch(e => {
       loadMore ? setPage(_page - 1) : setPage(1)
       setSearching(false)
