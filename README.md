@@ -51,7 +51,7 @@ npm run test
 ## 測試用例說明
 > 皆採用 headless 方法進行測試
 ### 用例1 - `Page Init`
-> 確認開啟瀏覽器，並驗證`#div` tag已載入後，進行`document title`, `Header`, `filter`, `search`(驗證為空值), `empty`, `loading`...文件的顯示/隱藏狀態
+> 確認開啟瀏覽器，並驗證`div#root` tag已載入後，進行`document title`, `Header`, `filter`, `search`(驗證為空值), `empty`, `loading`...文件的顯示/隱藏狀態
 
 ### 用例2 - `Searching Something`
 > 於輸入框輸入文字 - React後，驗證http request送出中(loading)與完成(list)...等的組件狀態正確，並計算取得的list資料筆數為30筆 - Github Search API 單筆 Request 預設值返回列數
