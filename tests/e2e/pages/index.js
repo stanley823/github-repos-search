@@ -62,13 +62,20 @@ module.exports = {
       const that = this
       this
         .waitForElementPresent('@limitRemaining', 'Rate limit pressent')
-        .getText('@limitRemaining', function (result) {
-          const limit = result.value
-          for (let index = 0; index < limit; index++) {
-              that.scrollToBottom(30 + 30 * (index + 1))
-          }
-          that.scrollToBottomWithErr()
-        })
+        .api.execute(function () {
+          const length = document.querySelectorAll('#root > div > main > section > ul > li').length
+          return length
+        }, function (length) {
+          that.getText('@limitRemaining', function (result) {
+            const limit = result.value
+            if (limit > 0) {
+              that.scrollToBottom(length.value + 30)
+              that.getRateLimit()
+            } else {
+              that.scrollToBottomWithErr()
+            }
+          })
+        } )
       return this
     },
   }],

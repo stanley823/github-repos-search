@@ -64,3 +64,4 @@ selenium-server.log
 
 # test_output
 reports/
+index.spec/
