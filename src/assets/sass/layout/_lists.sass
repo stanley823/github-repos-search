@@ -1,0 +1,48 @@
+.lists
+  padding-left: calc(270px + 4em)
+  +box-sizing(border-box)
+  &__title
+    padding-bottom: .5em
+    font-size: $font-extra-large
+    line-height: 1.5
+    border-bottom: 1px solid $color-black
+    +box-sizing(border-box)
+  &__container
+    margin-top: 2em
+    li
+      padding: 2em 0
+      border-bottom: 1px solid rgba($color-black, .2)
+      a
+        position: relative
+        display: block
+        padding-bottom: .5em
+        font-size: $font-extra-large
+        color: $color-blue
+        line-height: 1
+        +box-sizing(border-box)
+      > p
+        line-height: 1
+        font-size: $font-p-big
+        font-weight: 300
+        margin-bottom: .5em
+  &__topic
+    display: flex
+    margin-bottom: .5em
+    span
+      padding: .3em .9em
+      margin: 0 .5em .5em 0
+      background-color: darken($color-light-blue, 5)
+      color: $color-blue
+      +border-radius(3px)
+  &__others
+    display: flex
+    p
+      display: flex
+      margin-right: 1em
+      justify-content: center
+      font-size: $font-p-small
+      font-weight: 300
+      i
+        margin-right: .5em
+    &__star
+

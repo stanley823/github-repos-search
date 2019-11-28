@@ -1,0 +1,27 @@
+body
+  word-wrap: break-word
+  font-size: $font-base-size
+  font-family: $font-family
+  position: relative
+  background: $background-color
+  overflow-x: hidden
+  touch-action: manipulation
+
+a
+  text-decoration: none
+  color: $color-white
+
+.container
+  max-width: 1800px
+  padding-left: span(1 wide)
+  padding-right: span(1 wide)
+  margin-left: auto
+  margin-right: auto
+  overflow: hidden
+  +box-sizing(border-box)
+
+main
+  position: relative
+  padding-top: 3em
+  margin-top: 62px
+  min-height: calc(100vh - 62px)
