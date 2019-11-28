@@ -30,7 +30,7 @@ npm 6.10.2
         - `Lists` - 列表項目
 * `tests/e2e` - 測試資料夾
     - `command` - 共用指令
-    - `page` - `page object` 分類處理
+    - `page` - `page object` 主測試各用例函數
     - `specs` - 主測試邏輯
 
 ## Project setup

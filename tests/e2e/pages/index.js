@@ -52,7 +52,7 @@ module.exports = {
           })
         }, [])
       this
-        .api.pause(3000)
+        .api.pause(5000)
         .getAlertText(function (object) {
           that.assert.equal(object.value, '查詢次數超出限制，請稍後再試')
         })
