@@ -5,6 +5,7 @@ const Empty = memo(function Empty () {
     <div className="empty">
       <i className="fe fe-alert-triangle"/>
       <span>Data Empty</span>
+      <p>Enter Keyword to Search Github repository</p>
     </div>
   )
 })
